@@ -1,7 +1,7 @@
 //ad-itple 클래스를 가진 div 태그를 다 가져와서 배열로 저장한다.
 let adElementArr = [...document.querySelectorAll(".ad-itple")];
 
-loadAd("ad.json");
+loadAd("https://money-itple.github.io/ad/ad.json");
 //광고를 만드는 함수를 만든다.
 async function loadAd(url) {
   let res = await fetch(url);
