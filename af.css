@@ -1,0 +1,16 @@
+.af-itple{
+    height: 300px;
+    border: 1px solid black;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.af-itple .af-img{
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;  
+    width: 50%;
+    height: 300px;
+}
