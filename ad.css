@@ -1,0 +1,29 @@
+.ad-itple{
+    height: 200px;
+    border: 1px solid black;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.ad-itple .ad-img{
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;  
+}
+.ad-itple.square, .ad-itple.wide{
+    cursor: pointer;
+}
+.ad-itple.square .ad-img{
+    width: 100%;
+    flex: 1;
+}
+
+.ad-itple.wide .ad-img{
+    width: 100%;
+    flex: 1;    
+}
+
+.ad-itple p{
+    
+}
