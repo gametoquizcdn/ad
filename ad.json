@@ -1,0 +1,38 @@
+[
+  {
+    "ok": 1,
+    "type": "square",
+    "category": "여자",
+    "comment": "셰프라인 페니아 인덕션 IH 크림 세라믹 후라이팬,냄비 8종",
+    "src": "http://img.tenping.kr/Content/Upload/Images/2022011113280001_Dis_20220111132853.jpg",
+    "url": "http://iryan.kr/t601e1dvlw",
+    "necessary": 1
+  },
+  {
+    "ok": 1,
+    "type": "square",
+    "category": "건강",
+    "comment": "건강을 지키세요",
+    "src": "https://blog.kakaocdn.net/dn/bBRuCl/btrq235I0cJ/KazXkwQBPRwoUN1tDKwi30/img.png",
+    "url": "https://itple.co.kr",
+    "necessary": 1
+  },
+  {
+    "ok": 1,
+    "type": "wide",
+    "category": "여자",
+    "comment": "여자들아 안녕",
+    "src": "https://blog.kakaocdn.net/dn/bBRuCl/btrq235I0cJ/KazXkwQBPRwoUN1tDKwi30/img.png",
+    "url": "https://itple.co.kr",
+    "necessary": 1
+  },
+  {
+    "ok": 1,
+    "type": "wide",
+    "category": "남자",
+    "comment": "남자들아 안녕",
+    "src": "https://blog.kakaocdn.net/dn/bBRuCl/btrq235I0cJ/KazXkwQBPRwoUN1tDKwi30/img.png",
+    "url": "https://itple.co.kr",
+    "necessary": 1
+  }
+]
