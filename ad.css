@@ -1,12 +1,12 @@
 .ad-itple{
-    height: 200px;
-    border: 1px solid black;    
+    padding: 10px 0;       
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .ad-itple .ad-img{
+    width: 100%;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;  
@@ -14,16 +14,17 @@
 .ad-itple.square, .ad-itple.wide{
     cursor: pointer;
 }
-.ad-itple.square .ad-img{
-    width: 100%;
-    flex: 1;
+.ad-itple.square .ad-img{    
+    flex: 300px;
 }
 
 .ad-itple.wide .ad-img{
-    width: 100%;
-    flex: 1;    
+    flex: 250px;   
 }
 
 .ad-itple p{
-    
+    padding: 10px;
+    max-width: 500px;
+    text-align: center;
+    word-break: keep-all;
 }
