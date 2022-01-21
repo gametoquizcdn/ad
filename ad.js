@@ -1,7 +1,7 @@
 //ad-itple 클래스를 가진 div 태그를 다 가져와서 배열로 저장한다.
 let adElementArr = [...document.querySelectorAll(".ad-itple")];
 
-loadAd("https://money-itple.github.io/ad/ad.json");
+loadAd("https://opensheet.elk.sh/1JnCOruPQKp9juaxckms-YTyp6CRgbdPbFr1Ocw59seQ/ad");
 //광고를 만드는 함수를 만든다.
 async function loadAd(url) {
   let res = await fetch(url);
@@ -16,10 +16,12 @@ async function loadAd(url) {
     let adCategoryArr = [];
     //ad는 광고json 데이터다
     adData.forEach((ad) => {
-      //data-type과 같은 것이 있는지 확인한다.
-      if (element.dataset.type == ad.type) {
-        //같은 것이 있으면 추가한다.
-        adTypeArr.push(ad);
+      //ok가 1이면 확인한다.
+      if (ad.ok == "1") {
+        //data-type과 같은 것이 있는지 확인한다.
+        if (element.dataset.type == ad.type) {
+          adTypeArr.push(ad);
+        }
       }
     });
     //여기 까지는 type을 정한 것이다.
