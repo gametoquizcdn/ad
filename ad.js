@@ -64,7 +64,7 @@ async function loadAd(url) {
       element.append(imgElement);
       //necessary가 1이면 글자를 넣어야 하는 경우다.
       //comment로 글자를 만든다.
-      if (adChoice.necessary == 1) {      
+      if (adChoice.necessary == "1") {      
         let commentElement = document.createElement("p");
         commentElement.innerText = adChoice.comment;
         element.append(commentElement);
