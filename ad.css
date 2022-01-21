@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'KOTRAHOPE';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 .ad-itple{
     padding: 10px 0;       
     display: flex;
@@ -7,7 +13,7 @@
 }
 .ad-itple .ad-img{
     width: 100%;
-    background-size: contain;
+    background-size:contain; 
     background-position: center;
     background-repeat: no-repeat;  
 }
@@ -17,14 +23,14 @@
 .ad-itple.square .ad-img{    
     flex: 300px;
 }
-
 .ad-itple.wide .ad-img{
     flex: 250px;   
 }
-
 .ad-itple p{
-    padding: 10px;
+    font-family: 'KOTRAHOPE';
+    font-size : 1.3rem;   
+    padding: 10px 20px;
     max-width: 500px;
     text-align: center;
-    word-break: keep-all;
+    word-break: keep-all;   
 }
