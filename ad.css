@@ -1,6 +1,14 @@
+/*
 @font-face {
     font-family: 'KOTRAHOPE';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+*/
+@font-face {
+    font-family: 'SUIT-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Medium.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -10,7 +18,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+    border: 1px solid #999;
+    padding:5px;
+    }
 .ad-itple .ad-img{
     width: 100%;
     background-size:contain; 
@@ -25,20 +35,14 @@
 }
 .ad-itple.wide .ad-img{
     flex: 250px;   
+    
 }
 .ad-itple p{
-    font-family: 'KOTRAHOPE';
+    font-family: 'SUIT-Medium';
     font-size : 1.3rem;   
+    font-weight: bold;
     padding: 10px 20px;
     max-width: 500px;
     text-align: center;
     word-break: keep-all;   
 }
-
-/*
-@media screen and (max-width:767px){
-    .ad-itple .ad-img{
-        background-size:cover; 
-    }
-}
-*/
