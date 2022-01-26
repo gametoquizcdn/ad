@@ -26,12 +26,10 @@
 }
 .af-itple p{
     font-family: 'SUIT-Medium';
-    font-size : 1.3rem;   
-    font-weight: bold;
-    padding: 10px 20px;
-    max-width: 500px;
-    text-align: center;
-    word-break: keep-all;   
+    font-size : 1.3rem !important;   
+    font-weight: bold !important;
+    padding: 10px 20px !important;
+    max-width: 500px !important;
+    text-align: center !important;
+    word-break: keep-all !important;   
 }
-
-
