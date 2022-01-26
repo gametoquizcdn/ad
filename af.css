@@ -1,16 +1,37 @@
+@font-face {
+    font-family: 'SUIT-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 .af-itple{
-    height: 300px;
-    border: 1px solid black;    
+    margin: 5px 0;
+    padding: 10px 0;       
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center;      
+}
+.af-itple.col{
     cursor: pointer;
 }
 .af-itple .af-img{
-    background-size: contain;
+    width: 100%;
+    background-size:contain; 
     background-position: center;
     background-repeat: no-repeat;  
-    width: 50%;
-    height: 300px;
 }
+.af-itple.col .af-img{    
+    flex: 300px;
+}
+.af-itple p{
+    font-family: 'SUIT-Medium';
+    font-size : 1.3rem;   
+    font-weight: bold;
+    padding: 10px 20px;
+    max-width: 500px;
+    text-align: center;
+    word-break: keep-all;   
+}
+
+
