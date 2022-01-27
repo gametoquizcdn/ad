@@ -22,10 +22,20 @@
     background-repeat: no-repeat;  
     overflow: hidden;
     transform: scale(1);
-    transition: transform 0.1s ease-in-out;   
+    transition: all 0.1s ease-in-out;   
 }
-.af-itple .af-img:hover{
-    transform: scale(1.04);
+.af-itple .af-img::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    transition: inherit;    
+}
+.af-itple .af-img:hover:before{
+    transform: scale(1.1);
 }
 .af-itple.col .af-img{    
     flex: 300px;
