@@ -25,7 +25,7 @@
     overflow:hidden;
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
     */
-    }
+}
 .ad-itple .ad-img{
     width: 100%;
     background-size:contain; 
@@ -33,10 +33,20 @@
     background-repeat: no-repeat; 
     overflow: hidden;
     transform: scale(1);
-    transition: transform 0.1s ease-in-out; 
+    transition: all 0.1s ease-in-out;     
 }
-.ad-itple .ad-img:hover{
-    transform: scale(1.04);
+.ad-itple .ad-img::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    transition: inherit;    
+}
+.ad-itple .ad-img:hover:before{
+    transform: scale(1.1);
 }
 .ad-itple.square, .ad-itple.wide{
     cursor: pointer;
@@ -45,7 +55,8 @@
     flex: 300px;
 }
 .ad-itple.wide .ad-img{
-    flex: 250px;       
+    flex: 250px;   
+    
 }
 .ad-itple p{
     font-family: 'SUIT-Medium';
