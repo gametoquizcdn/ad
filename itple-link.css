@@ -1,0 +1,290 @@
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+@font-face {
+    font-family: 'TmonMonsori';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+:root{
+    --padding-basic:30px;
+    --padding-mobile:15px;
+    --gap-basic:30px;   
+    --gap-mobile:10px; 
+    --border-color:#d9d9d9;
+    --title-underline-color: #3db39e;
+    --btn-open-color:#3db39e;
+    --btn-open-color-hover:#45cfb6;
+    --boxshadow-basic:3px;
+    --radius-basic:10px;
+    --radius-small:5px;    
+    --font-title:'TmonMonsori';
+    --font-comment: 'nanumsquare';
+    --font-btn:"TmonMonsori";
+    --fontsize-title-basic:1.9rem;
+    --fontsize-title-mobile:1.6rem;
+    --fontsize-comment-basic:1.2rem;
+    --fontsize-btn-basic:1.1rem;
+}
+/* ad 광고 나오는 것 */
+.ad-site{
+    margin: 5px 0;
+    padding: 10px 0;       
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*
+    border: 1px solid #999;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    */
+}
+.ad-site .ad-img{
+    width: 100%;
+    background-size:contain; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    overflow: hidden;
+    transform: scale(1);
+    transition: all 0.1s ease-in-out;     
+}
+.ad-site .ad-img::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    transition: inherit;    
+}
+.ad-site .ad-img:hover:before{
+    transform: scale(1.1);
+}
+.ad-site.square, .ad-site.wide{
+    cursor: pointer;
+}
+.ad-site.square .ad-img{    
+    flex: 300px;
+}
+.ad-site.wide .ad-img{
+    flex: 250px;   
+    
+}
+.ad-site p{
+    font-family: 'nanumsquare';
+    font-size : var(--fontsize-comment-basic);  
+    font-weight: bold;
+    padding: 10px 20px;
+    max-width: 500px;
+    text-align: center;
+    word-break: keep-all;   
+}
+/* 링크 관련 */
+.ad-link.active,
+.af-link.active
+{
+    display: flex;     
+    margin: 10px auto;  
+    box-shadow: 0 0 var(--boxshadow-basic) rgba(0,0,0,0.2);    
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-basic);
+    overflow: hidden; 
+    max-width: 760px;
+    cursor: pointer;
+}
+.ad-link.wide.active{
+    flex-direction: column;
+}
+.ad-link .link-img,
+.af-link .link-img
+{
+    width: 300px;
+    height: 300px;
+    border-radius: var(--radius-basic) 0 0 var(--radius-basic);
+    box-shadow: 0 0 var(--boxshadow-basic) rgba(0,0,0,0.2);    
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;   
+    overflow: hidden;
+    transform: scale(1);
+    transition: all 0.1s ease-in-out;   
+}
+.ad-link .link-img::before,
+.af-link .link-img::before
+{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    transition: inherit;   
+}
+.ad-link .link-img:hover:before,
+.af-link .link-img:hover::before
+{
+    transform: scale(1.1);
+}
+.ad-link .link-summary,
+.af-link .link-summary
+{
+    position: relative; 
+    flex:1;    
+    padding: var(--padding-basic);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--gap-basic);   
+}
+.ad-link.wide .link-summary{
+    padding : calc(var(--padding-mobile) + 4px) var(--padding-mobile) var(--padding-mobile); 
+} 
+.ad-link .link-summary .title-container{
+    display: flex;
+    position: relative;    
+}
+.ad-link .title-container .title,
+.af-link .title-container .title
+{        
+    word-break: keep-all;
+    font-family: var(--font-title);
+    font-size: var(--fontsize-title-basic);
+    font-weight: bold;  
+    animation: heartbeat 1.5s infinite   
+}
+.ad-link .title-container.type1 .title{
+    /* 왼쪽 선과 거리를 둔다.*/
+    /* af는 주지 않는다.*/
+    padding-left: 20px;   
+}
+@keyframes heartbeat {
+    50% {
+        transform: scale(1.02);
+    }
+}
+.ad-link .title-container.type1 .line{
+    position: absolute;
+    left: 0;   
+    top: 50%;
+    transform: translateY(-50%); 
+    height: 95%;
+    width: 10px;    
+    border-radius: var(--radius-small);     
+}
+.ad-link .link-summary .comment,
+.af-link .link-summary .comment
+{
+    width: 90%;
+    font-family: var(--font-comment);
+    font-size: var(--fontsize-comment-basic);
+    word-break: keep-all;
+}
+.ad-link .link-summary .btn-open,
+.af-link .link-summary .btn-open
+{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 10px;
+    font-family: var(--font-comment);
+    font-weight: bold;
+    font-size: var(--fontsize-btn-basic);
+    border-radius: var(--radius-small);
+    box-shadow: 0 0 var(--boxshadow-basic) rgba(0,0,0,0.2); 
+    transition: all 0.1s;  
+}
+.ad-link .link-summary .btn-open.type2{
+    border: 1px solid var(--border-color);
+}
+.ad-link .link-summary .btn-open:hover,
+.af-link .link-summary .btn-open:hover
+{
+    transform:scale(1.1);
+}
+/* 넓은 광고와 관련된 것이다. */
+.ad-link.wide .img-container{
+   width: 100%;
+   overflow: hidden;
+}
+.ad-link .img-container .link-img-wide{
+   width: 100%;
+   /* display block을 해야 아래 공간이 없다.*/
+   display: block;
+   transition: all 0.2s;
+}
+.ad-link .img-container .link-img-wide:hover{
+    transform: scale(1.04);
+}
+/* af 관련 */
+.af-link .link-img
+{
+    width: 210px;
+    height: 210px;      
+}
+@media screen and (max-width: 760px){      
+    .ad-link    
+    {     
+        width: 300px;
+        flex-direction: column;
+       
+    }    
+    .ad-link.wide{
+        width: 760px;
+        max-width: 95%;
+        margin: 10px;       
+    }    
+    .ad-link .link-img,
+    .af-link .link-img
+    {          
+        border-radius: var(--radius-basic) var(--radius-basic) 0 0;
+    }
+    .ad-link .link-summary{    
+       padding : var(--padding-mobile); 
+       gap:var(--gap-mobile);
+    }
+    .ad-link .link-summary .title-container{
+        
+    }
+    .ad-link .title-container .title{       
+        font-size: var(--fontsize-title-mobile);        
+        padding-left : 20px;       
+    }      
+    
+    .ad-link .link-summary .title-container.type2{
+        display: none;
+    }
+    .ad-link .link-summary .comment{
+        /* 꽉 차게 한다. */
+        width: calc(100% - 45px);      
+    }    
+    .ad-link .link-summary .btn-open{
+        /*bottom: calc(100% + 10px);*/
+        right: 5px;
+        bottom: 5px;
+    }
+    .af-link{
+        width: 300px;
+        flex-direction: column;
+    }
+    .af-link .link-img{
+        width: 300px;
+        height: 250px;
+    }
+    .af-link .link-summary{
+        padding:var(--padding-mobile);
+    }
+    .af-link .link-summary .title-container{
+        /* 오른쪽 버튼에 넣기 위해서 margin을 설정한다. */
+        margin-right: 50px;
+    }
+    .af-link .link-summary .title{
+        font-family: var(--font-comment);
+        font-size: var(--fontsize-comment-basic);
+    }
+    .af-link .link-summary .comment{
+        display: none;
+    }
+}
