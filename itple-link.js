@@ -12,9 +12,11 @@ function randomIdx(arr) {
 // 사진 전체가 정해진 크기게 나올 수 있게 한다.
 // ad-site 클래스를 가진 div 태그를 다 가져와서 배열로 저장한다.
 let adElementArr = [...document.querySelectorAll(".ad-site")];
-loadAd(
-  "https://opensheet.elk.sh/1JnCOruPQKp9juaxckms-YTyp6CRgbdPbFr1Ocw59seQ/ad"
-);
+if( adElementArr.length > 0){
+  loadAd(
+    "https://opensheet.elk.sh/1JnCOruPQKp9juaxckms-YTyp6CRgbdPbFr1Ocw59seQ/ad"
+  );
+}
 //광고를 만드는 함수를 만든다.
 async function loadAd(url) {
   let res = await fetch(url);
@@ -109,7 +111,7 @@ let linkCategoryArr = [];
 let linkElement;
 let linkChoice;
 // categoryElement가 있으면 만든다.
-if (categoryElement) {
+if (categoryElement.length > 0) {
   loadLink(
     "https://opensheet.elk.sh/1JnCOruPQKp9juaxckms-YTyp6CRgbdPbFr1Ocw59seQ/link"
   );
@@ -314,9 +316,11 @@ let afElementArr = [...document.querySelectorAll(".af-link")];
 let afElement;
 let afChoice;
 
-loadAf(
-  "https://opensheet.elk.sh/1JnCOruPQKp9juaxckms-YTyp6CRgbdPbFr1Ocw59seQ/af"
-);
+if ( afElementArr.length > 0){
+  loadAf(
+    "https://opensheet.elk.sh/1JnCOruPQKp9juaxckms-YTyp6CRgbdPbFr1Ocw59seQ/af"
+  );
+}
 //제휴링크를 만드는 함수를 만든다.
 async function loadAf(url) {
   let res = await fetch(url);
