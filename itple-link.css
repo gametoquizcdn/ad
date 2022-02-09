@@ -227,14 +227,13 @@
 @media screen and (max-width: 760px){      
     .ad-link    
     {     
-        width: 300px;
+        width: 250px;
         flex-direction: column;
        
     }    
     .ad-link.wide{
         width: 760px;
-        max-width: 95%;
-        margin: 10px;       
+        max-width: 95%;              
     }    
     .ad-link .link-img,
     .af-link .link-img
@@ -266,11 +265,13 @@
         bottom: 5px;
     }
     .af-link{
-        width: 300px;
+        width: 250px;
         flex-direction: column;
     }
-    .af-link .link-img{
-        width: 300px;
+    .ad-link .link-img,
+    .af-link .link-img
+    {
+        width: 250px;
         height: 250px;
     }
     .af-link .link-summary{
