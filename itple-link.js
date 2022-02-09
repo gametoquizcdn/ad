@@ -173,6 +173,7 @@ function makeLink(arr = "anything") {
 // 랜덤하게 type을 선택한다.
 let linkTypeArr = [linkType1, linkType2, linkType3];
 let squareTypeArr = [linkType1, linkType2];
+let outTypeArr = [linkType2, linkType3];
 function selectLinkType() {
   let typeChoice = linkTypeArr[randomIdx(linkTypeArr)];
   // type을 선택했는데 square가 없는 경우
@@ -189,6 +190,21 @@ function selectLinkType() {
   if (typeChoice == linkType3) {
     if (linkChoice.wide == "0") {
       typeChoice = squareTypeArr[randomIdx(squareTypeArr)];
+    }
+  }
+  // 맨 위에 바깥쪽에 있는 광고는 너무 크게 않도록 한다.
+  if(linkElement.classList.contains("out")){
+    typeChoice = outTypeArr[randomIdx(outTypeArr)];
+    //square 사진이 없다면
+    if (typeChoice == linkType2) {
+      if (linkChoice.square == "0") {
+        typeChoice = linkType3
+      }
+    }
+    else if(typeChoice == linkType3){
+      if (linkChoice.wide == "0") {
+        typeChoice = linkType2
+      }
     }
   }
   typeChoice();
