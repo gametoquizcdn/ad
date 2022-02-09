@@ -12,7 +12,7 @@ function randomIdx(arr) {
 // 사진 전체가 정해진 크기게 나올 수 있게 한다.
 // ad-site 클래스를 가진 div 태그를 다 가져와서 배열로 저장한다.
 let adElementArr = [...document.querySelectorAll(".ad-site")];
-if( adElementArr.length > 0){
+if (adElementArr.length > 0) {
   loadAd(
     "https://opensheet.elk.sh/1JnCOruPQKp9juaxckms-YTyp6CRgbdPbFr1Ocw59seQ/ad"
   );
@@ -110,12 +110,10 @@ let linkData;
 let linkCategoryArr = [];
 let linkElement;
 let linkChoice;
-// categoryElement가 있으면 만든다.
-if (categoryElement.length > 0) {
-  loadLink(
-    "https://opensheet.elk.sh/1JnCOruPQKp9juaxckms-YTyp6CRgbdPbFr1Ocw59seQ/link"
-  );
-}
+// categoryElement가 없어도 만들어야 한다.
+loadLink(
+  "https://opensheet.elk.sh/1JnCOruPQKp9juaxckms-YTyp6CRgbdPbFr1Ocw59seQ/link"
+);
 //광고를 만드는 함수를 만든다.
 async function loadLink(url) {
   let res = await fetch(url);
@@ -128,10 +126,14 @@ async function loadLink(url) {
     linkData.forEach((link) => {
       //ok가 1이면 확인한다.
       if (link.ok == "1") {
-        //data-category과 같은 것이 있는지 확인한다.
-        if (categoryElement.dataset.category == link.category) {
-          linkCategoryArr.push(link);
+        // data-category과 같은 것이 있는지 확인한다.
+        // categoryElement가 있어야 한다.
+        if (categoryElement){
+          if (categoryElement.dataset.category == link.category) {
+            linkCategoryArr.push(link);
+          }
         }
+       
       }
     });
     // 광고를 다 확인한 뒤에 category와 맞는 것이 있는지 확인한다.
@@ -316,7 +318,7 @@ let afElementArr = [...document.querySelectorAll(".af-link")];
 let afElement;
 let afChoice;
 
-if ( afElementArr.length > 0){
+if (afElementArr.length > 0) {
   loadAf(
     "https://opensheet.elk.sh/1JnCOruPQKp9juaxckms-YTyp6CRgbdPbFr1Ocw59seQ/af"
   );
