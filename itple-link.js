@@ -105,6 +105,9 @@ function clickAd(e) {
 // 어떤 span#category를 사용해서 만든다.
 // 그 페이지에 있는 것은 모두 같은 카테고리에 있는 링크가 나오도록 한다.
 let categoryElement = document.querySelector("#category");
+// 카테고리를 저장하는 배열이다.
+// 카테고리는 쉼표로 구분한다. 공간을 없앤다.
+let categoryArr;
 let linkElementArr = [...document.querySelectorAll(".ad-link")];
 let linkData;
 let linkCategoryArr = [];
@@ -138,11 +141,18 @@ async function loadLink(url) {
         // data-category과 같은 것이 있는지 확인한다.
         // categoryElement가 있어야 한다.        
         if (categoryElement){
-          if (categoryElement.dataset.category == link.category) {
-            linkCategoryArr.push(link);
-            if(link.wide != "0"){
-              wideLinkArr.push(link);
-            }            
+          //쉼표로 구분한다.
+          let categoryArr = categoryElement.dataset.category.split(",");                  
+          if (categoryArr.includes(link.category)) {  
+            // 광고가 없으면 포함시킨다.
+            if(!linkCategoryArr.includes(link)){
+              linkCategoryArr.push(link);
+              if(link.wide != "0"){
+                if(!wideLinkArr.includes(link)){
+                  wideLinkArr.push(link);
+                }                
+              } 
+            }   
           }
         }
        
