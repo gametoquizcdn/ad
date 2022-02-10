@@ -5,15 +5,19 @@
     font-weight: normal;
     font-style: normal;
 }
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+}
 :root{
     --padding-basic:30px;
     --padding-mobile:15px;
     --gap-basic:30px;   
     --gap-mobile:10px; 
-    --border-color:#d9d9d9;
-    --title-underline-color: #3db39e;
-    --btn-open-color:#3db39e;
-    --btn-open-color-hover:#45cfb6;
+    --img-width:300px;  
+    --mobile-af-img-width:120px;
+    --border-color:#d9d9d9;  
     --boxshadow-basic:3px;
     --radius-basic:10px;
     --radius-small:5px;    
@@ -24,6 +28,7 @@
     --fontsize-title-mobile:1.6rem;
     --fontsize-comment-basic:1.2rem;
     --fontsize-btn-basic:1.1rem;
+    --color-basic: #000;    
 }
 /* ad 광고 나오는 것 */
 .ad-site{
@@ -66,16 +71,16 @@
     cursor: pointer;
 }
 .ad-site.square .ad-img{    
-    flex: 300px;
+    flex: var(--img-width);
 }
 .ad-site.wide .ad-img{
-    flex: 250px;   
-    
+    flex: 250px;  
 }
 .ad-site p{
     font-family: 'nanumsquare';
     font-size : var(--fontsize-comment-basic);  
     font-weight: bold;
+    color: var(--color-basic) !important;
     padding: 10px 20px;
     max-width: 500px;
     text-align: center;
@@ -100,8 +105,8 @@
 .ad-link .link-img,
 .af-link .link-img
 {
-    width: 300px;
-    height: 300px;
+    width: var(--img-width);
+    height: var(--img-width);
     border-radius: var(--radius-basic) 0 0 var(--radius-basic);
     box-shadow: 0 0 var(--boxshadow-basic) rgba(0,0,0,0.2);    
     background-size: cover; 
@@ -138,6 +143,7 @@
     flex-direction: column;
     justify-content: center;
     gap: var(--gap-basic);   
+    overflow: hidden;
 }
 .ad-link.wide .link-summary{
     padding : calc(var(--padding-mobile) + 4px) var(--padding-mobile) var(--padding-mobile); 
@@ -153,6 +159,7 @@
     font-family: var(--font-title);
     font-size: var(--fontsize-title-basic);
     font-weight: bold;  
+    color: var(--color-basic) !important;
     animation: heartbeat 1.5s infinite   
 }
 .ad-link .title-container.type1 .title{
@@ -180,6 +187,7 @@
     width: 90%;
     font-family: var(--font-comment);
     font-size: var(--fontsize-comment-basic);
+    color: var(--color-basic) !important;
     word-break: keep-all;
 }
 .ad-link .link-summary .btn-open,
@@ -227,7 +235,7 @@
 @media screen and (max-width: 760px){      
     .ad-link    
     {     
-        width: 250px;
+        width: var(--img-width);
         flex-direction: column;
        
     }    
@@ -235,8 +243,7 @@
         width: 760px;
         max-width: 95%;              
     }    
-    .ad-link .link-img,
-    .af-link .link-img
+    .ad-link .link-img    
     {          
         border-radius: var(--radius-basic) var(--radius-basic) 0 0;
     }
@@ -244,14 +251,16 @@
        padding : var(--padding-mobile); 
        gap:var(--gap-mobile);
     }
+    .af-link .link-summary{
+        height: var(--mobile-af-img-width);
+    }
     .ad-link .link-summary .title-container{
         
     }
     .ad-link .title-container .title{       
         font-size: var(--fontsize-title-mobile);        
         padding-left : 20px;       
-    }      
-    
+    }          
     .ad-link .link-summary .title-container.type2{
         display: none;
     }
@@ -263,29 +272,32 @@
         /*bottom: calc(100% + 10px);*/
         right: 5px;
         bottom: 5px;
-    }
-    .af-link{
-        width: 250px;
-        flex-direction: column;
-    }
-    .ad-link .link-img,
-    .af-link .link-img
+    }   
+    .ad-link .link-img   
     {
-        width: 250px;
-        height: 250px;
+        width: var(--img-width);
+        height: var(--img-width);
+    }
+    .af-link .link-img{
+        width: var(--mobile-af-img-width);
+        height: var(--mobile-af-img-width);
     }
     .af-link .link-summary{
         padding:var(--padding-mobile);
     }
     .af-link .link-summary .title-container{
-        /* 오른쪽 버튼에 넣기 위해서 margin을 설정한다. */
-        margin-right: 50px;
+        /* 오른쪽 버튼에 넣기 위해서 margin-right을 설정한다. */
+        /* 버튼이 필요없으면 넣지 않는다.*/
+        /* margin-right: 50px; */
     }
     .af-link .link-summary .title{
         font-family: var(--font-comment);
         font-size: var(--fontsize-comment-basic);
+        text-overflow: ellipsis;
     }
-    .af-link .link-summary .comment{
+    .af-link .link-summary .comment,
+    .af-link .link-summary .btn-open
+    {
         display: none;
     }
 }
