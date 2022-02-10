@@ -236,13 +236,16 @@
     .ad-link    
     {     
         width: var(--img-width);
-        flex-direction: column;
-       
+        flex-direction: column;       
     }    
     .ad-link.wide{
-        width: 760px;
-        max-width: 95%;              
+        width: 95%;   
+        max-width: 760px;                   
     }    
+    .af-link{        
+        width: 95%;
+        max-width: 760px;
+    }
     .ad-link .link-img    
     {          
         border-radius: var(--radius-basic) var(--radius-basic) 0 0;
