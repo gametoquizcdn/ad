@@ -107,7 +107,7 @@ function clickAd(e) {
 let categoryElement = document.querySelector("#category");
 // 카테고리를 저장하는 배열이다.
 // 카테고리는 쉼표로 구분한다. 공간을 없앤다.
-let categoryArr;
+let categoryArr = [];
 let linkElementArr = [...document.querySelectorAll(".ad-link")];
 let linkData;
 let linkCategoryArr = [];
@@ -142,22 +142,39 @@ async function loadLink(url) {
         // categoryElement가 있어야 한다.        
         if (categoryElement){
           //쉼표로 구분한다.
-          let categoryArr = categoryElement.dataset.category.split(",");                  
-          if (categoryArr.includes(link.category)) {  
-            // 광고가 없으면 포함시킨다.
-            if(!linkCategoryArr.includes(link)){
-              linkCategoryArr.push(link);
-              if(link.wide != "0"){
-                if(!wideLinkArr.includes(link)){
-                  wideLinkArr.push(link);
-                }                
-              } 
-            }   
-          }
-        }
-       
-      }
+          let categorySplit = categoryElement.dataset.category.split(",");     
+          categorySplit.forEach((item)=>{     
+            if(!categoryArr.includes(item.trim())){
+              categoryArr.push(item.trim());
+            }                 
+          })            
+          // 구글 스프레드시트로 광고를 만들 때 category를 여러 개 정할 수 있다.
+          // 쉼표로 구분한다.
+          let linkSplit = link.category.split(",");
+          let linkArr = [];
+          linkSplit.forEach((item)=>{     
+            if(!linkArr.includes(item.trim())){
+              linkArr.push(item.trim());
+            }                 
+          })  
+          // 배열에 있는 것을 하나씩 비교한다.
+          linkArr.forEach((item)=>{
+            if (categoryArr.includes(item)) {  
+              // 광고가 없으면 포함시킨다.
+              if(!linkCategoryArr.includes(link)){
+                linkCategoryArr.push(link);
+                if(link.wide != "0"){
+                  if(!wideLinkArr.includes(link)){
+                    wideLinkArr.push(link);
+                  }                
+                } 
+              }   
+            }
+          })          
+        }       
+      }   
     });
+    
     // 광고를 다 확인한 뒤에 category와 맞는 것이 있는지 확인한다.
     // category에 맞는 광고를 만든다.
     if (linkCategoryArr.length > 0) {
