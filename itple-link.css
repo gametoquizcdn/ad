@@ -77,9 +77,9 @@
     flex: 250px;  
 }
 .ad-site p{
-    font-family: 'nanumsquare';
-    font-size : var(--fontsize-comment-basic);  
-    font-weight: bold;
+    font-family: 'nanumsquare' !important;
+    font-size : var(--fontsize-comment-basic) !important;  
+    font-weight: bold !important;
     color: var(--color-basic) !important;
     padding: 10px 20px;
     max-width: 500px;
@@ -155,10 +155,10 @@
 .ad-link .title-container .title,
 .af-link .title-container .title
 {        
-    word-break: keep-all;
-    font-family: var(--font-title);
-    font-size: var(--fontsize-title-basic);
-    font-weight: bold;  
+    word-break: keep-all !important;
+    font-family: var(--font-title) !important;
+    font-size: var(--fontsize-title-basic) !important;
+    font-weight: bold !important;
     color: var(--color-basic) !important;
     animation: heartbeat 1.5s infinite   
 }
@@ -185,8 +185,8 @@
 .af-link .link-summary .comment
 {
     width: 90%;
-    font-family: var(--font-comment);
-    font-size: var(--fontsize-comment-basic);
+    font-family: var(--font-comment) !important;
+    font-size: var(--fontsize-comment-basic) !important;
     color: var(--color-basic) !important;
     word-break: keep-all;
 }
@@ -197,9 +197,9 @@
     right: 10px;
     bottom: 10px;
     padding: 10px;
-    font-family: var(--font-comment);
-    font-weight: bold;
-    font-size: var(--fontsize-btn-basic);
+    font-family: var(--font-comment) !important;
+    font-weight: bold !important;
+    font-size: var(--fontsize-btn-basic) !important;
     border-radius: var(--radius-small);
     box-shadow: 0 0 var(--boxshadow-basic) rgba(0,0,0,0.2); 
     transition: all 0.1s;  
@@ -258,7 +258,7 @@
         
     }
     .ad-link .title-container .title{       
-        font-size: var(--fontsize-title-mobile);        
+        font-size: var(--fontsize-title-mobile) !important;       
         padding-left : 20px;       
     }          
     .ad-link .link-summary .title-container.type2{
@@ -291,8 +291,8 @@
         /* margin-right: 50px; */
     }
     .af-link .link-summary .title{
-        font-family: var(--font-comment);
-        font-size: var(--fontsize-comment-basic);
+        font-family: var(--font-comment) !important;
+        font-size: var(--fontsize-comment-basic) !important;
         text-overflow: ellipsis;
     }
     .af-link .link-summary .comment,
