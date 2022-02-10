@@ -110,6 +110,11 @@ let linkData;
 let linkCategoryArr = [];
 let linkElement;
 let linkChoice;
+// wide만 따로 저정한다.
+// 맨 위는 wide로 만든다.
+let allWideLinkArr = [];
+// 카테고리에 맞는 wide type 배열도 만든다.
+let wideLinkArr = [];
 // categoryElement가 없어도 만들어야 한다.
 loadLink(
   "https://opensheet.elk.sh/1JnCOruPQKp9juaxckms-YTyp6CRgbdPbFr1Ocw59seQ/link"
@@ -126,22 +131,30 @@ async function loadLink(url) {
     linkData.forEach((link) => {
       //ok가 1이면 확인한다.
       if (link.ok == "1") {
+        // wide를 따로 모아서 배열에 저장한다.
+        if(link.wide != "0"){
+          allWideLinkArr.push(link);
+        }
         // data-category과 같은 것이 있는지 확인한다.
-        // categoryElement가 있어야 한다.
+        // categoryElement가 있어야 한다.        
         if (categoryElement){
           if (categoryElement.dataset.category == link.category) {
             linkCategoryArr.push(link);
+            if(link.wide != "0"){
+              wideLinkArr.push(link);
+            }            
           }
         }
        
       }
     });
     // 광고를 다 확인한 뒤에 category와 맞는 것이 있는지 확인한다.
+    // category에 맞는 광고를 만든다.
     if (linkCategoryArr.length > 0) {
       makeLink(linkCategoryArr);
     } else {
       // category에 맞는 것이 없다면
-      // 그냥 하나 만든다.
+      // 그냥 아무거나 만든다.
       makeLink();
     }
     linkElement.addEventListener("click", clickLink);
@@ -152,12 +165,34 @@ function makeLink(arr = "anything") {
   // 광고가 있으면 보이게 한다.
   linkElement.classList.add("active");
   // 광고를 하나 고른다.
+  // 매개변수에 값을 넣으면 매개변수 안에서 값을 고른다.
   if (arr != "anything") {
-    linkChoice = arr[randomIdx(arr)];
+    if (linkElement.classList.contains("out")){
+      // wide type의 광고가 있는지 확인한다.
+      if ( wideLinkArr.length > 0){
+        linkChoice = wideLinkArr[randomIdx(wideLinkArr)];
+      }
+      else{
+        // 모든 wide type에서 광고를 하나 고른다.
+        linkChoice = allWideLinkArr[randomIdx(allWideLinkArr)];
+      }
+    }
+    else{
+      // 본문에 있는 것은 아무 것이나 만든다.
+      linkChoice = arr[randomIdx(arr)];
+    }    
   } else {
     // category와 아무것도 맞는 것이 없다면 아무거나 하나 고른다.
-    linkChoice = linkData[randomIdx(linkData)];
-  }
+    // out에 있는데 category에 없는 경우
+    if (linkElement.classList.contains("out")){
+      // 모든 wide type에서 광고를 하나 고른다.
+      linkChoice = allWideLinkArr[randomIdx(allWideLinkArr)];
+    }
+    else{
+      // 본문에 있는 광고다.
+      linkChoice = linkData[randomIdx(linkData)];
+    }    
+  }  
   //url를 3등분으로 나눈다.
   let url = linkChoice.url;
   let url1, url2, url3;
@@ -173,7 +208,6 @@ function makeLink(arr = "anything") {
 // 랜덤하게 type을 선택한다.
 let linkTypeArr = [linkType1, linkType2, linkType3];
 let squareTypeArr = [linkType1, linkType2];
-let outTypeArr = [linkType2, linkType3];
 function selectLinkType() {
   let typeChoice = linkTypeArr[randomIdx(linkTypeArr)];
   // type을 선택했는데 square가 없는 경우
@@ -193,19 +227,9 @@ function selectLinkType() {
     }
   }
   // 맨 위에 바깥쪽에 있는 광고는 너무 크게 않도록 한다.
+  // type3으로 정한다.
   if(linkElement.classList.contains("out")){
-    typeChoice = outTypeArr[randomIdx(outTypeArr)];
-    //square 사진이 없다면
-    if (typeChoice == linkType2) {
-      if (linkChoice.square == "0") {
-        typeChoice = linkType3
-      }
-    }
-    else if(typeChoice == linkType3){
-      if (linkChoice.wide == "0") {
-        typeChoice = linkType2
-      }
-    }
+    typeChoice = linkType3;   
   }
   typeChoice();
 }
