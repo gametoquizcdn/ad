@@ -1,0 +1,257 @@
+@font-face {
+    font-family: 'NanumBarunpen';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+ @font-face {
+    font-family: 'TmonMonsori';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/* 변수를 정한다. */
+:root{
+--padding-basic:30px;
+--padding-mobile:15px;
+--gap-basic:30px;
+--gap-mobile:10px;
+--img-width:300px;
+/* square에서 글씨가 나오는 부분이 높이를 정한다. */
+--comment-height:60px;
+--mobile-af-img-width:120px;
+--border-color:#d9d9d9;
+--boxshadow-basic:3px;
+--radius-basic:10px;
+--radius-small:5px;
+--font-title:'TmonMonsori';
+--font-comment: 'nanumsquare';
+--font-btn:"TmonMonsori";
+--fontsize-title-basic:1.9rem;
+--fontsize-title-mobile:1.6rem;
+--fontsize-comment-basic:1.2rem;
+--fontsize-btn-basic:1.1rem;
+--color-basic: #000; 
+}
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+/* 링크 관련이다. */
+.ad-link.active,
+.af-link.active
+{
+    display: flex;   
+    /* 가운데 정렬한다. */  
+    margin: 10px auto;  
+    box-shadow: 0 0 var(--boxshadow-basic) rgba(0,0,0,0.2);    
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-basic);
+    overflow: hidden; 
+    max-width: 760px;
+    cursor: pointer;
+}
+/* out 링크와 wide type2는 세로로 정렬한다.*/
+.ad-link.out.type2.active,
+.ad-link.wide.type2.active
+{
+    flex-direction: column;
+}
+.ad-link .link-img,
+.af-link .link-img
+{
+    width: var(--img-width);
+    height: var(--img-width);
+    border-radius: var(--radius-basic) 0 0 var(--radius-basic);
+    box-shadow: 0 0 var(--boxshadow-basic) rgba(0,0,0,0.2);    
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;   
+    overflow: hidden;
+    transform: scale(1);
+    transition: all 0.1s ease-in-out;   
+}
+.ad-link .link-img::before,
+.af-link .link-img::before
+{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    transition: inherit;   
+}
+.ad-link .link-img:hover:before,
+.af-link .link-img:hover::before
+{
+    transform: scale(1.1);
+}
+/* 넓은 광고와 관련된 것이다. */
+.ad-link.out .img-container,
+.ad-link.wide .img-container{
+   width: 100%;
+   overflow: hidden;
+}
+.ad-link .img-container .link-img-wide{
+    width: 100%;
+    /* display block을 해야 아래 공간이 없다.*/
+    display: block;
+    transition: all 0.2s;
+}
+.ad-link .img-container .link-img-wide:hover{
+    transform: scale(1.04);
+}
+.ad-link .link-summary,
+.af-link .link-summary
+{
+    position: relative; 
+    flex:1;    
+    padding: var(--padding-basic);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--gap-basic);   
+    overflow: hidden;
+}
+.ad-link.out .link-summary,
+.ad-link.wide .link-summary{
+    padding : calc(var(--padding-mobile) + 10px) var(--padding-mobile); 
+} 
+.ad-link .link-summary .title-container{
+    display: flex;
+    position: relative;    
+}
+.ad-link .title-container .title,
+.af-link .title-container .title
+{        
+    word-break: keep-all !important;
+    font-family: var(--font-title) !important;
+    font-size: var(--fontsize-title-basic) !important;
+    font-weight: bold !important;
+    color: var(--color-basic) !important;
+    animation: heartbeat-link 1.5s infinite   
+}
+.ad-link .title-container.type1 .title{
+    /* 왼쪽 선과 거리를 둔다.*/
+    /* af는 주지 않는다.*/
+    padding-left: 20px;   
+}
+@keyframes heartbeat-link {
+    50% {
+        transform: scale(1.02);
+    }
+}
+/* 제목 왼쪽에 있는 선이다. */
+.ad-link .title-container.type1 .line{
+    position: absolute;
+    left: 0;   
+    top: 50%;
+    transform: translateY(-50%); 
+    height: 95%;
+    width: 10px;    
+    border-radius: var(--radius-small);     
+}
+.ad-link .link-summary .comment,
+.af-link .link-summary .comment
+{
+    width: 90%;
+    font-family: var(--font-comment) !important;
+    font-size: var(--fontsize-comment-basic) !important;
+    color: var(--color-basic) !important;
+    word-break: keep-all;
+}
+/* wide type2는 bold 설정한다. */
+.ad-link.out.type2 .link-summary .comment,
+.ad-link.wide.type2 .link-summary .comment{
+    font-weight: bold;
+}
+.ad-link .link-summary .btn-open,
+.af-link .link-summary .btn-open
+{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 10px;
+    font-family: var(--font-comment) !important;
+    font-weight: bold !important;
+    font-size: var(--fontsize-btn-basic) !important;
+    border-radius: var(--radius-small);
+    box-shadow: 0 0 var(--boxshadow-basic) rgba(0,0,0,0.2); 
+    transition: all 0.1s;  
+}
+.ad-link .link-summary .btn-open.type2{
+    border: 1px solid var(--border-color);
+}
+.ad-link .link-summary .btn-open:hover,
+.af-link .link-summary .btn-open:hover
+{
+    transform:scale(1.1);
+}
+/* af 관련 */
+.af-link .link-img
+{
+    width: 210px;
+    height: 210px;      
+}
+@media screen and (max-width: 760px){    
+    .ad-link.out,    
+    .ad-link.wide,
+    .af-link
+    {
+        /* 너비를 95% 정해서 양쪽에 공간이 있도록 한다.*/
+        width: 95%;   
+        max-width: 760px;                   
+    }  
+    .ad-link.wide.type1    
+    {     
+        /*--img-width는 사진 크기다. 사진 크기만큼 너비를 정한다.*/
+        width: var(--img-width);
+        flex-direction: column;       
+    }        
+    .ad-link .link-img    
+    {      
+        width: var(--img-width);
+        height: var(--img-width);    
+        border-radius: var(--radius-basic) var(--radius-basic) 0 0;
+    }    
+    .af-link .link-img{
+        width: var(--mobile-af-img-width);
+        height: var(--mobile-af-img-width);
+    }
+    .ad-link .link-summary{    
+       padding : var(--padding-mobile); 
+       gap:var(--gap-mobile);
+    }    
+    .af-link .link-summary{
+        height: var(--mobile-af-img-width);
+        padding:var(--padding-mobile);
+    }        
+    .ad-link .title-container .title{       
+        font-size: var(--fontsize-title-mobile) !important;       
+        padding-left : 20px;       
+    }   
+    .af-link .link-summary .title{
+        font-family: var(--font-comment) !important;
+        font-size: var(--fontsize-comment-basic) !important;
+        text-overflow: ellipsis;
+    }       
+    .ad-link .link-summary .title-container.type2{
+        display: none;
+    }
+    .ad-link .link-summary .comment{
+        /* 오른쪽에 있는 버튼 크기를 계산해서 width를 정한다. */
+        width: calc(100% - 45px);      
+    }    
+    .ad-link .link-summary .btn-open{       
+        right: 5px;
+        bottom: 5px;
+    }       
+    .af-link .link-summary .comment,
+    .af-link .link-summary .btn-open
+    {
+        display: none;
+    }
+}
