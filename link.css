@@ -12,31 +12,31 @@
 }
 /* 변수를 정한다. */
 :root{
---padding-basic:30px;
---padding-mobile:15px;
---gap-basic:30px;
---gap-mobile:10px;
---img-width:300px;
-/* square에서 글씨가 나오는 부분이 높이를 정한다. */
---comment-height:60px;
---mobile-af-img-width:120px;
---border-color:#d9d9d9;
---boxshadow-basic:3px;
---radius-basic:10px;
---radius-small:5px;
---font-title:'TmonMonsori';
---font-comment: 'nanumsquare';
---font-btn:"TmonMonsori";
---fontsize-title-basic:1.9rem;
---fontsize-title-mobile:1.6rem;
---fontsize-comment-basic:1.2rem;
---fontsize-btn-basic:1.1rem;
---color-basic: #000; 
+    --padding-basic:30px;
+    --padding-mobile:15px;
+    --gap-basic:30px;
+    --gap-mobile:10px;
+    --img-width:300px;
+    /* square에서 글씨가 나오는 부분이 높이를 정한다. */
+    --comment-height:60px;
+    --mobile-af-img-width:120px;
+    --border-color:#d9d9d9;
+    --boxshadow-basic:3px;
+    --radius-basic:10px;
+    --radius-small:5px;
+    --font-title:'TmonMonsori';
+    --font-comment: 'nanumsquare';
+    --font-btn:"TmonMonsori";
+    --fontsize-title-basic:1.9rem;
+    --fontsize-title-mobile:1.6rem;
+    --fontsize-comment-basic:1.2rem;
+    --fontsize-btn-basic:1.1rem;
+    --color-basic: #000; 
 }
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 /* 링크 관련이다. */
 .ad-link.active,
