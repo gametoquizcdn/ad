@@ -1,43 +1,51 @@
+// 링크와 제휴마케팅 링크를 만든다.
 function randomIdxArr(arr) {
   return Math.floor(Math.random() * arr.length);
 }
 // 1. 블로그에서 사용하는 링크와 광고 클릭
 // 링크와 광고를 다 같이 만든다.
-// 여러 종류를 사용해서 만든다.
-// 이미지를 사용해서 만든다.
+// 링크모양은 왼쪽에 사진이 있고, 오른쪽에 글이 있는 유형이 있다.
+// 이 유형은 모바일에서는 위에는 사진, 아래는 글이 있다.
+// 또 위에는 사진, 아래는 글이 있는 유형이 있다.
+// 이 유형은 모바일에서도 그대로다.
 // id가 category를 사용해서 만든다.
 // 어떤 data-category가 있는지 확인한다.
-// out은 바깥쪽에 있는 걸로 다른 모양으로 만든다.
+// out은 바깥쪽에 있는 걸로 wide 모양의 광고를 만든다.
+// 맨 위나 아래는 wide 이미지로 만든다.
 // 그 페이지에 있는 것은 모두 같은 카테고리에 있는 링크가 나오도록 한다.
-// 링크는 여러 종류로 만든다.
+// 링크 모양은 여러 종류로 만든다.
 // 랜덤하게 정한다.
 // 어떤 이미지의 url이 있는지 확인하고 만든다.
+// 이미지 종류는 square, wide, long이 있다.
 // categoryElement가 없어도 만들어야 한다.
 let categoryElement = document.querySelector("#category");
-// 카테고리를 저장하는 배열이다.
+// categoryArr는 카테고리를 저장하는 배열이다.
 // 카테고리는 쉼표로 구분한다. 빈 칸을 없애서 사용한다.
 // 어떤 카테고리를 사용할지 정한다.
+// categoryElement가 있어야 categoryArr 배열을 만들 수 있다. 
 let categoryArr = [];
-// ad-link 클래스 있는 걸로 만든다.
+// linkElementArr는 ad-link 클래스 있는 것을 배열로 만든다.
+// ad-link에 링크가 나온다.
 let linkElementArr = [...document.querySelectorAll(".ad-link")];
-// linkData는 link에 대한 정보를 저장한다.
+// linkData는 링크에 대한 정보를 저장한다.
+// 구글스프레드시트에서 가져온다.
 let linkData;
-// link을 넣을 element다.
+// 링크를 넣을 엘리먼트다.
 let linkElement;
-// 고른 link다.
+// 고른 링크다.
 let linkChoice;
-// 모든 링크를 저장하는 배열이다.
+// All이 들어가는 것은 모든 링크를 저장하는 배열이다.
 // categoryElement가 없으면 여기에서 랜덤하게 골라서 링크를 만든다.
 // 같은 type으로 배열을 정리한다.
-// 모든 링크를 저장하는 배열이다.
+// square 모양의 이미지를 가진 링크다.
 let squareLinkAllArr = [];
-// 맨 위나 아래는 wide 이미지로 만든다.
-// 따로 저장한다.
+// wide 모양의 이미지를 가진 링크다.
 let wideLinkAllArr = [];
+// long 모양의 이미지를 가진 링크다.
 let longLinkAllArr = [];
 // category에 맞는 링크를 저장하는 배열이다.
+// 모양마다 따로 구분해서 배열로 저장한다.
 let squareLinkArr = [];
-// category에 맞는 wide type의 링크를 저장하는 배열이다.
 let wideLinkArr = [];
 let longLinkArr = [];
 // linkElement가 있으면 만든다.
@@ -54,13 +62,12 @@ async function loadLink(url) {
   // type이 중요하다.
   // type을 따로 배열로 저장하고 거기에서 같은 category가 있는지 확인한다.
   linkSort();
-  // categoryElement가 있을 때는 linkCategoryArr와 wideLinkArr에서 만든다.
-  // categoryElement가 없을 때는 linkAllArr@@와 wideLinkAllArr에서 만든다.
   makeLink();
 }
 // 링크를 분류한다.
 // 카테고리에 맞는 것을 따로 저장한다.
 function linkSort() {
+  // categoryElement가 있다면
   if (categoryElement) {
     // 쉼표로 구분한다.
     let categorySplit = categoryElement.dataset.category.split(",");
@@ -72,9 +79,15 @@ function linkSort() {
       }
     });
   }
+  // categoryElement가 없다면
+  else {
+
+  }
+  // 모든 링크 정보를 확인한다.
   linkData.forEach((link) => {
     // ok 값이 1인 것만 배열에 넣는다.
     if (link.ok == "1") {
+      // 0이 아니면 배열에 추가한다.
       if (link.square != "0") {
         // squareLinkAllArr에 없으면 추가한다.
         if (!squareLinkAllArr.includes(link)) {
@@ -99,15 +112,17 @@ function linkSort() {
       // link 카테고리를 배열로 저장한다.
       let linkArr = [];
       linkSplit.forEach((item) => {
+        // trim()으로 빈칸을 제거한다.
         if (!linkArr.includes(item.trim())) {
           linkArr.push(item.trim());
         }
       });
       // categoryArr에 원소가 있으면
+      // 이 경우는 categoryElement가 있는 경우다. 
       if (categoryArr.length > 0) {
         // 배열에 있는 것을 하나씩 비교한다.
         linkArr.forEach((item) => {
-          // category가 있으면 추가한다.
+          // categoryArr 배열 안에 원소로 있으면 이미지 모양에 맞게 배열에 추가한다.
           if (categoryArr.includes(item)) {
             // 배열에 없으면 포함시킨다.
             if (link.square != "0") {
@@ -134,25 +149,33 @@ function linkSort() {
 
 function makeLink() {
   // linkElementArr 배열로 링크를 만든다.
-  // categoryElement가 있을 때는 linkCategoryArr와 wideLinkArr에서 만든다.
-  // categoryElement가 없을 때는 linkAllArr@@와 wideLinkAllArr에서 만든다.
+  // linkElementArr 배열에는 ad-link 클래스를 가진 div가 저장되어 있다. 
+  // categoryElement가 있을 때는
+  // categoryElement가 없을 때는
   linkElementArr.forEach((element) => {
     linkElement = element;
     // active 클래스를 추가한다.
+    // acitve 클래스를 추가해야 보인다.
     linkElement.classList.add("active");
+    // 링크타입을 정한다.
     selectLinkType();
     linkElement.addEventListener("click", clickLink);
   });
 }
 
-// long type은 data-type을 long으로 정한다.
+// wide 모양의 링크는 squaure와 wide 이지미로 만든다.
 let wideType = ["square", "wide"];
-// wideTypeChoice에 따라서 다른 링크를 만든다.
+// wideTypeChoice에 따라서 다른 모양의 링크를 만든다.
+// wideType에서 wideTypeChoice를 고른다.
 let wideTypeChoice;
+// long 모양의 링크는 squaure와 long 이지미로 만든다.
 let longType = ["square", "long"];
+// longTypeChoice에 따라서 다른 모양의 링크를 만든다.
+// longType에서 longTypeChoice를 고른다.
 let longTypeChoice;
 
 function selectLinkType() {
+  // out 클래스가 있다면 
   if (linkElement.classList.contains("out")) {
     // categoryElement가 있다면
     if (categoryElement) {
@@ -165,43 +188,56 @@ function selectLinkType() {
     }
     // categoryElement가 없다면
     else {
+      // 카테고리에 상관없이 wide 이미지를 고른다.
       linkChoice = wideLinkAllArr[randomIdxArr(wideLinkAllArr)];
     }
+    // 링크 url를 만든다.
     makeUrl();
+    // Type2의 링크를 만든다.
     linkWideType2();
   } else {
-    // out 클래스가 없다면 여러 가지 type의 링크를 만들 수 있다.
+    // out 클래스가 없다면 본문의 광고다.  
     // categoryElement의 data-type이 long이 아니라면 wide에서 광고를 만든다.
     // categoryElement가 있다면
-    if(categoryElement){
-      if (categoryElement.dataset.type != "long") {
+    // @@여기서 에러가 생겼다.    
+      // data-type이 long이 아니면 
+      if (linkElement.dataset.type != "long") {
+        // wide 링크를 만든다.
+        // 종류를 고른다. 
         wideTypeChoice = wideType[randomIdxArr(wideType)];
+        // squaure라면 
         if (wideTypeChoice == "square") {
-          // square가 있는지 확인한다.
+          // square 이미지가 있는지 확인한다.
           if (squareLinkArr.length > 0) {
+            // linkChoice에 고른 링크 정보다.
             linkChoice = squareLinkArr[randomIdxArr(squareLinkArr)];
           } else {
             // square가 없고 wide가 있다면
             if (wideLinkArr.length > 0) {
               linkChoice = wideLinkArr[randomIdxArr(wideLinkArr)];
+              // wide를 골랐으니 wideTypeChoice을 wide로 바꾼다.
               wideTypeChoice = "wide";
             } else {
-              //wide도 없다면 그냥 모든 square에서 고른다.
+              // wide도 없다면 그냥 모든 square에서 고른다.
+              // wideTypeChoice는 square다. 
               linkChoice = squareLinkAllArr[randomIdxArr(squareLinkAllArr)];
             }
           }
         } else if (wideTypeChoice == "wide") {
-          // wide광고가 있다면
+          // wideTypeChoice가 wide라면 
+          // wide 링크를 만들어야 한다. 
           if (wideLinkArr.length > 0) {
             linkChoice = wideLinkArr[randomIdxArr(wideLinkArr)];
           } else {
-            // wide광고가 없다면
+            // wide 모양이 없다면 square 이미지로 링크를 만든다.
             if (squareLinkArr.length > 0) {
               linkChoice = squareLinkArr[randomIdxArr(squareLinkArr)];
+              // wideTypeChoice는 square로 정한다.
               wideTypeChoice = "square";
             } else {
-              //square도 없다면 그냥 모든 wide에서 고른다.
-              adChoice = wideAdAllArr[randomIdxArr(wideAdAllArr)];
+              // square 이미지도 없다면 그냥 모든 wide에서 고른다.
+              // wideTypeChoice는 그대로 square다.
+              linkChoice = wideLinkAllArr[randomIdxArr(wideLinkAllArr)];
             }
           }
         }
@@ -237,8 +273,7 @@ function selectLinkType() {
           }
         }
         linkLong();
-      }
-    }    
+      } 
   }
 }
 
