@@ -172,70 +172,73 @@ function selectLinkType() {
   } else {
     // out 클래스가 없다면 여러 가지 type의 링크를 만들 수 있다.
     // categoryElement의 data-type이 long이 아니라면 wide에서 광고를 만든다.
-    if (categoryElement.dataset.type != "long") {
-      wideTypeChoice = wideType[randomIdxArr(wideType)];
-      if (wideTypeChoice == "square") {
-        // square가 있는지 확인한다.
-        if (squareLinkArr.length > 0) {
-          linkChoice = squareLinkArr[randomIdxArr(squareLinkArr)];
-        } else {
-          // square가 없고 wide가 있다면
+    // categoryElement가 있다면
+    if(categoryElement){
+      if (categoryElement.dataset.type != "long") {
+        wideTypeChoice = wideType[randomIdxArr(wideType)];
+        if (wideTypeChoice == "square") {
+          // square가 있는지 확인한다.
+          if (squareLinkArr.length > 0) {
+            linkChoice = squareLinkArr[randomIdxArr(squareLinkArr)];
+          } else {
+            // square가 없고 wide가 있다면
+            if (wideLinkArr.length > 0) {
+              linkChoice = wideLinkArr[randomIdxArr(wideLinkArr)];
+              wideTypeChoice = "wide";
+            } else {
+              //wide도 없다면 그냥 모든 square에서 고른다.
+              linkChoice = squareLinkAllArr[randomIdxArr(squareLinkAllArr)];
+            }
+          }
+        } else if (wideTypeChoice == "wide") {
+          // wide광고가 있다면
           if (wideLinkArr.length > 0) {
             linkChoice = wideLinkArr[randomIdxArr(wideLinkArr)];
-            wideTypeChoice = "wide";
           } else {
-            //wide도 없다면 그냥 모든 square에서 고른다.
-            linkChoice = squareLinkAllArr[randomIdxArr(squareLinkAllArr)];
+            // wide광고가 없다면
+            if (squareLinkArr.length > 0) {
+              linkChoice = squareLinkArr[randomIdxArr(squareLinkArr)];
+              wideTypeChoice = "square";
+            } else {
+              //square도 없다면 그냥 모든 wide에서 고른다.
+              adChoice = wideAdAllArr[randomIdxArr(wideAdAllArr)];
+            }
           }
         }
-      } else if (wideTypeChoice == "wide") {
-        // wide광고가 있다면
-        if (wideLinkArr.length > 0) {
-          linkChoice = wideLinkArr[randomIdxArr(wideLinkArr)];
-        } else {
-          // wide광고가 없다면
+        linkWide();
+      } else {
+        longTypeChoice = longType[randomIdxArr(longType)];
+        if (longTypeChoice == "square") {
+          // square가 있는지 확인한다.
           if (squareLinkArr.length > 0) {
             linkChoice = squareLinkArr[randomIdxArr(squareLinkArr)];
-            wideTypeChoice = "square";
           } else {
-            //square도 없다면 그냥 모든 wide에서 고른다.
-            adChoice = wideAdAllArr[randomIdxArr(wideAdAllArr)];
+            // square가 없고 long이 있다면
+            if (longLinkArr.length > 0) {
+              linkChoice = longLinkArr[randomIdxArr(longLinkArr)];
+              longTypeChoice = "long";
+            } else {
+              // long도 없다면 그냥 모든 square에서 고른다.
+              linkChoice = squareLinkAllArr[randomIdxArr(squareLinkAllArr)];
+            }
           }
-        }
-      }
-      linkWide();
-    } else {
-      longTypeChoice = longType[randomIdxArr(longType)];
-      if (longTypeChoice == "square") {
-        // square가 있는지 확인한다.
-        if (squareLinkArr.length > 0) {
-          linkChoice = squareLinkArr[randomIdxArr(squareLinkArr)];
-        } else {
-          // square가 없고 long이 있다면
+        } else if (longTypeChoice == "long") {
           if (longLinkArr.length > 0) {
             linkChoice = longLinkArr[randomIdxArr(longLinkArr)];
-            longTypeChoice = "long";
           } else {
-            // long도 없다면 그냥 모든 square에서 고른다.
-            linkChoice = squareLinkAllArr[randomIdxArr(squareLinkAllArr)];
+            // long가 없고 square가 있다면
+            if (squareLinkArr.length > 0) {
+              linkChoice = squareLinkArr[randomIdxArr(squareLinkArr)];
+              longTypeChoice = "square";
+            } else {
+              // square도 없다면 모든 long에서 고른다.
+              linkChoice = longLinkAllArr[randomIdxArr(longLinkAllArr)];
+            }
           }
         }
-      } else if (longTypeChoice == "long") {
-        if (longLinkArr.length > 0) {
-          linkChoice = longLinkArr[randomIdxArr(longLinkArr)];
-        } else {
-          // long가 없고 square가 있다면
-          if (squareLinkArr.length > 0) {
-            linkChoice = squareLinkArr[randomIdxArr(squareLinkArr)];
-            longTypeChoice = "square";
-          } else {
-            // square도 없다면 모든 long에서 고른다.
-            linkChoice = longLinkAllArr[randomIdxArr(longLinkAllArr)];
-          }
-        }
+        linkLong();
       }
-      linkLong();
-    }
+    }    
   }
 }
 
